@@ -1,0 +1,18 @@
+name: Build NDS
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: apt-get update && apt-get install -y ruby rake
+      - run: make
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RNDS-Stream-SD
+          path: "*.nds"
+          
