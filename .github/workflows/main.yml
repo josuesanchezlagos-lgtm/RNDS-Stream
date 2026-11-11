@@ -10,7 +10,9 @@ jobs:
         with:
           submodules: recursive
       - run: apt-get update && apt-get install -y ruby rake bison build-essential git
-      - run: git clone --depth 1 --branch 4.0.0 https://github.com vendor/RubyNDS/vendor/mruby
+      - run: |
+          REPO="mruby/mruby.git"
+          git clone --depth 1 --branch 4.0.0 "https://github.com{REPO}" vendor/RubyNDS/vendor/mruby
       - run: make
       - uses: actions/upload-artifact@v4
         with:
