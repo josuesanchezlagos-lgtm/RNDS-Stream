@@ -9,10 +9,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - run: apt-get update && apt-get install -y ruby rake
+      - run: apt-get update && apt-get install -y ruby rake bison build-essential git
+      - run: git clone --depth 1 --branch 4.0.0 https://github.com vendor/RubyNDS/vendor/mruby
       - run: make
       - uses: actions/upload-artifact@v4
         with:
           name: RNDS-Stream-SD
-          path: "*.nds"
+          path: "**/*.nds"
           
