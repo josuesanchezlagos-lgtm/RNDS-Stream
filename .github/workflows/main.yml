@@ -11,10 +11,11 @@ jobs:
           submodules: recursive
       - run: apt-get update && apt-get install -y ruby rake bison build-essential git
       - run: git config --global url."https://github.com".insteadOf "gh:"
-      - run: git clone --depth 1 --branch 4.0.0 gh:mruby/mruby.git vendor/RubyNDS/vendor/mruby
+      - run: git clone --depth 1 --branch 4.0.0 gh:/mruby/mruby.git vendor/RubyNDS/vendor/mruby
       - run: make
       - uses: actions/upload-artifact@v4
         with:
           name: RNDS-Stream-SD
           path: "**/*.nds"
+          
           
